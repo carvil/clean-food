@@ -1,9 +1,9 @@
 (ns config.migrate-config
   (:use [korma.db]
         [korma.core])
-  (:require [uk_food_hygiene.models.db :as uk_food_hygiene_db]))
+  (:require [uk-food-hygiene.models.db :as uk-food-hygiene]))
 
-(defdb db uk_food_hygiene_db/db-spec)
+(defdb db uk-food-hygiene/db-spec)
 
 (defn- maybe-create-schema-table
   "Creates the schema table if it doesn't already exist."
