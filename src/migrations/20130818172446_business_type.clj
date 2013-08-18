@@ -10,7 +10,7 @@
   (println "migrations.20130818172446-business-type up...")
   (sql/with-connection db/db-spec
     (sql/create-table
-      :business_type
+      :business_types
         [:id               "SERIAL PRIMARY KEY"]
         [:business_type_id :integer]
         [:name             "varchar(200)"]
@@ -21,4 +21,4 @@
   []
   (println "migrations.20130818172446-business-type down...")
   (sql/with-connection db/db-spec
-    (sql/drop-table :business_type)))
+    (sql/drop-table :business_types)))

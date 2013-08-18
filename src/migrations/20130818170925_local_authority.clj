@@ -10,7 +10,7 @@
   (println "migrations.20130818170925-local-authority up...")
   (sql/with-connection db/db-spec
     (sql/create-table
-      :local_authority
+      :local_authorities
         [:id          "SERIAL PRIMARY KEY"]
         [:business_id :integer]
         [:code        :integer]
@@ -24,4 +24,4 @@
   []
   (println "migrations.20130818170925-local-authority down...")
   (sql/with-connection db/db-spec
-    (sql/drop-table :local_authority)))
+    (sql/drop-table ::local_authorities)))

@@ -10,7 +10,7 @@
   (println "migrations.20130818181033-rating up...")
   (sql/with-connection db/db-spec
     (sql/create-table
-      :rating
+      :ratings
         [:id                      "SERIAL PRIMARY KEY"]
         [:value                    :integer]
         [:key                      "varchar(20)"]
@@ -25,4 +25,4 @@
   []
   (println "migrations.20130818181033-rating down...")
   (sql/with-connection db/db-spec
-    (sql/drop-table :rating)))
+    (sql/drop-table :ratings)))
