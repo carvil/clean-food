@@ -1,24 +1,10 @@
 (ns uk-food-hygiene.models.db
   (:use korma.core
-        [korma.db :only (defdb)])
-  (:require [uk-food-hygiene.models.schema :as schema]))
+        [korma.db :only (defdb)]))
 
-(defdb db schema/db-spec)
+(def db-spec {:subprotocol "postgresql"
+         :subname "//localhost/uk_food_hygiene"
+         :user "admin"
+         :password ""})
 
-(defentity users)
-
-(defn create-user [user]
-  (insert users
-          (values user)))
-
-(defn update-user [id first-name last-name email]
-  (update users
-  (set-fields {:first_name first-name
-               :last_name last-name
-               :email email})
-  (where {:id id})))
-
-(defn get-user [id]
-  (first (select users
-                 (where {:id id})
-                 (limit 1))))
+(defdb db db-spec)
