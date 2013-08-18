@@ -10,19 +10,18 @@
   [& args]
   (exec-raw
     "CREATE TABLE IF NOT EXISTS schema_version (
-      id SERIAL PRIMARY KEY,
-      version VARCHAR(255) NOT NULL,
+      version BIGINT NOT NULL,
       created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now())"))
 
 (defn current-db-version []
   (maybe-create-schema-table)
   (or
-    (Long. (:version
-             (first
-               (select :schema_version
-                       (fields :version)
-                       (order :created_at :DESC)
-                       (limit 1)))))
+    (:version
+      (first
+        (select :schema_version
+                (fields :version)
+                (order :created_at :DESC)
+                (limit 1))))
     0))
 
 (defn update-db-version [version]
