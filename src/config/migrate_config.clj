@@ -31,10 +31,11 @@
 
 (defn migrate-config []
   { :directory "src/migrations/"
-   :ns-content "\n (:use [korma.db]
-                         [korma.core])
-                \n (:require [clojure.java.jdbc :as sql]
-                             [uk-food-hygiene.models.db :as db])"
+   :ns-content "\n
+  (:use [korma.db]
+        [korma.core])\n
+  (:require [clojure.java.jdbc :as sql]
+            [uk-food-hygiene.models.db :as db])"
    :namespace-prefix "migrations"
    :init maybe-create-schema-table
    :current-version current-db-version
