@@ -36,5 +36,7 @@
   :url "http://example.com/FIXME"
   :description "FIXME: write description"
 
-  :plugins [[lein-ring "0.8.6"]]
+  :plugins [[lein-ring "0.8.6"]
+            [drift "1.5.2"]]
+
   :min-lein-version "2.0.0")
