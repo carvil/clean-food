@@ -20,6 +20,9 @@
         [:postcode                 "varchar(10)"]
         [:scheme_type              "varchar(10)"]
         [:location                 "geometry"]
+        [:rating_id                :integer]
+        [:business_type_id         :integer]
+        [:local_authority_id       :integer]
         [:created_at  "TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()"])))
 
 (defn down
