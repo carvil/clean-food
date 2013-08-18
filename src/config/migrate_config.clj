@@ -17,12 +17,12 @@
 (defn current-db-version []
   (maybe-create-schema-table)
   (or
-    (:version
-      (first
-        (select :schema_version
-                (fields :id)
-                (order :created_at :DESC)
-                (limit 1))))
+    (Long. (:version
+             (first
+               (select :schema_version
+                       (fields :version)
+                       (order :created_at :DESC)
+                       (limit 1)))))
     0))
 
 (defn update-db-version [version]
@@ -31,10 +31,10 @@
 
 (defn migrate-config []
   { :directory "src/migrations/"
-   :ns-content "\n (:use
-   [korma.db]
-   [korma.core]
-   )"
+   :ns-content "\n (:use [korma.db]
+                         [korma.core])
+                \n (:require [clojure.java.jdbc :as sql]
+                             [uk-food-hygiene.models.db :as db])"
    :namespace-prefix "migrations"
    :init maybe-create-schema-table
    :current-version current-db-version
