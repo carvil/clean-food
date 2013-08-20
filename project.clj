@@ -34,7 +34,8 @@
   }
 
   :url "http://example.com/FIXME"
-  :description "FIXME: write description"
+  :description "Visualisation of the UK food hygiene statistics according to
+    the open data provided by data.gov.uk"
 
   :plugins [[lein-ring "0.8.6"]
             [drift "1.5.2"]]
