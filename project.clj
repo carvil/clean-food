@@ -40,4 +40,7 @@
   :plugins [[lein-ring "0.8.6"]
             [drift "1.5.2"]]
 
+  ; Entry point for the parser
+  :main uk-food-hygiene.parser.core
+
   :min-lein-version "2.0.0")
