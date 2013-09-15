@@ -53,3 +53,9 @@
   (first (select :business_types
                  (where {:id id})
                  (limit 1))))
+
+(defn find-business-type
+  [where-map]
+  (select :business_types
+          (where where-map)))
+
