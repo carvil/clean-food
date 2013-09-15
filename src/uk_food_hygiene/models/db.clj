@@ -9,6 +9,9 @@
 
 (defdb db db-spec)
 
+(def local-authority-keys [:code :business_id :name :website :email])
+(def business-type-keys   [:business_type_id :name])
+
 ; CREATE
 
 (defn create-rating [rating]
