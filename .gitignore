@@ -11,3 +11,5 @@ pom.xml
 *.log
 
 .nrepl-port
+
+.DS_Store
