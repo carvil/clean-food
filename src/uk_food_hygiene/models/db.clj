@@ -44,6 +44,11 @@
                  (where {:id id})
                  (limit 1))))
 
+(defn find-local-authority
+  [where-map]
+  (select :local_authorities
+          (where where-map)))
+
 (defn get-business-type [id]
   (first (select :business_types
                  (where {:id id})
