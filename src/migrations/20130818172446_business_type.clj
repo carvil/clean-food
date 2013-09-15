@@ -12,7 +12,7 @@
     (sql/create-table
       :business_types
         [:id               "SERIAL PRIMARY KEY"]
-        [:business_type_id :integer]
+        [:business_type_id "varchar(20)"]
         [:name             "varchar(200)"]
         [:created_at  "TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()"])))
 

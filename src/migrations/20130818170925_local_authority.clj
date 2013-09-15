@@ -12,8 +12,8 @@
     (sql/create-table
       :local_authorities
         [:id          "SERIAL PRIMARY KEY"]
-        [:business_id :integer]
-        [:code        :integer]
+        [:business_id "varchar(20)"]
+        [:code        "varchar(20)"]
         [:name        "varchar(200)"]
         [:website     "varchar(200)"]
         [:email       "varchar(200)"]
