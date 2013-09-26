@@ -12,11 +12,11 @@
     (sql/create-table
       :ratings
         [:id                      "SERIAL PRIMARY KEY"]
-        [:value                    :integer]
+        [:value                    "varchar(20)"]
         [:key                      "varchar(20)"]
         [:date                     :date]
-        [:hygiene                  :integer]
-        [:structural               :integer]
+        [:hygiene                  "varchar(20)"]
+        [:structural               "varchar(20)"]
         [:confidence_in_management :integer]
         [:created_at  "TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()"])))
 

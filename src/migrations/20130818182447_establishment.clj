@@ -12,7 +12,7 @@
     (sql/create-table
       ::establishments
         [:id                       "SERIAL PRIMARY KEY"]
-        [:fhrs_id                  :integer]
+        [:fhrs_id                  "varchar(20)"]
         [:name                     "varchar(255)"]
         [:address_line_1           "varchar(255)"]
         [:address_line_2           "varchar(255)"]
