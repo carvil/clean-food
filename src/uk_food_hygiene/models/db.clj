@@ -11,6 +11,8 @@
 
 (def local-authority-keys [:code :business_id :name :website :email])
 (def business-type-keys   [:business_type_id :name])
+(def establishment-keys   [:fhrs_id :name :address_line_1 :address_line_2
+                           :address_line_3 :postcode :scheme_type])
 
 ; CREATE
 
