@@ -2,12 +2,15 @@
   (:use korma.core
         [korma.db :only (defdb)]))
 
-(def db-spec {:subprotocol "postgresql"
-         :subname "//localhost/uk_food_hygiene"
-         :user "admin"
-         :password ""})
+(def db-spec {
+  :subprotocol "postgresql"
+  :subname "//localhost/uk_food_hygiene"
+  :user "admin"
+  :password ""})
 
 (defdb db db-spec)
+
+; Basic keys for each entity
 
 (def local-authority-keys [:code :business_id :name :website :email])
 (def business-type-keys   [:business_type_id :name])
