@@ -64,3 +64,7 @@
   (select :business_types
           (where where-map)))
 
+(defn find-establishment
+  [where-map]
+  (select :establishments
+          (where where-map)))
