@@ -14,6 +14,16 @@
 (def establishment-keys   [:fhrs_id :name :address_line_1 :address_line_2
                            :address_line_3 :postcode :scheme_type])
 
+; HELPERS
+
+(defn to-point
+  "Converts a lat/lng pair into a SQL Geometry point"
+  [lat lng]
+  (if (and (nil? lat) (nil? lng))
+    nil
+    (korma.sql.engine/sql-func
+    "ST_GeomFromText" (str "POINT(" lat " " lng ")") (int 4326))))
+
 ; CREATE
 
 (defn create-rating [rating]
