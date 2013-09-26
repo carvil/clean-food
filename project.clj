@@ -11,6 +11,7 @@
                  [markdown-clj "0.9.29"]
                  [postgresql/postgresql "9.1-901.jdbc4"]
                  [korma "0.3.0-RC5"]
+                 [environ "0.4.0"]
                  [log4j "1.2.17" :exclusions [javax.mail/mail
                                               javax.jms/jms
                                               com.sun.jdmk/jmxtools
@@ -38,7 +39,8 @@
     the open data provided by data.gov.uk"
 
   :plugins [[lein-ring "0.8.6"]
-            [drift "1.5.2"]]
+            [drift "1.5.2"]
+            [lein-environ "0.4.0"]]
 
   ; Entry point for the parser
   :main uk-food-hygiene.parser.core

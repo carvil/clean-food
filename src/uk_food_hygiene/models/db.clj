@@ -1,12 +1,13 @@
 (ns uk-food-hygiene.models.db
   (:use korma.core
-        [korma.db :only (defdb)]))
+        [korma.db :only (defdb)]
+        [environ.core :refer [env]]))
 
 (def db-spec {
-  :subprotocol "postgresql"
-  :subname "//localhost/uk_food_hygiene"
-  :user "admin"
-  :password ""})
+  :subprotocol (env :pg-subprotocol "postgresql")
+  :subname     (env :pg-subname     "//localhost/uk_food_hygiene")
+  :user        (env :pg-user        "admin")
+  :password    (env :pg-password    "")})
 
 (defdb db db-spec)
 
