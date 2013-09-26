@@ -16,7 +16,12 @@
   [uri]
   (parse-stream (load-stream uri)))
 
+(defn find-all-by-tag
+  "Gets the content of a given tag, if it exists"
+  [lst tag]
+  (:content (first (filter #(= (:tag %) tag) lst))))
+
 (defn find-tag-content
   "Gets the content of a given tag, if it exists"
   [lst tag]
-  (first (:content (first (filter #(= (:tag %) tag) lst)))))
+  (first (find-all-by-tag lst tag)))
