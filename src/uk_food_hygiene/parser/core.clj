@@ -1,9 +1,10 @@
 (ns uk-food-hygiene.parser.core
+  (use [uk-food-hygiene.parser.establishment :as establishment])
   (:gen-class))
 
 (defn -main
   "Entry point to parse the data feed"
-  [& args]
+  [file & args]
   ;; work around dangerous default behaviour in Clojure
   (alter-var-root #'*read-eval* (constantly false))
-  (println "TODO - parse the data"))
+  (establishment/parse-doc file))
