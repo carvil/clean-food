@@ -1,5 +1,6 @@
 (ns uk-food-hygiene.models.db
   (:use korma.core
+        [clojure.data.json :only (read-str)]
         [korma.db :only (defdb)]
         [environ.core :refer [env]]))
 
@@ -27,6 +28,11 @@
     nil
     (korma.sql.engine/sql-func
     "ST_GeomFromText" (str "POINT(" lat " " lng ")") (int 4326))))
+
+(defn as-geojson [pg-geom]
+  (korma.sql.engine/sql-func "ST_AsGeoJSON" pg-geom))
+
+(def not-nil? (complement nil?))
 
 ; CREATE
 
@@ -78,7 +84,22 @@
   (select :business_types
           (where where-map)))
 
-(defn find-establishment
+(defn location-to-map
+  "Converts the location of an establishment from GEOJson to a clojure map"
+  [establishment function]
+  (into {}
+    (for [[k v] establishment]
+      [k (if (and (= k :location) (not-nil? v)) (function v) v)])))
+
+(defn find-establishment-geojson
   [where-map]
   (select :establishments
-          (where where-map)))
+    (fields :id :fhrs_id :name :address_line_1 :address_line_2 :address_line_3
+            :postcode :scheme_type :rating_id :business_type_id
+            :local_authority_id :created_at [(as-geojson :location) :location])
+    (where where-map)))
+
+(defn find-establishment
+  [where-map]
+  (map #(location-to-map %1 clojure.data.json/read-str)
+       (find-establishment-geojson where-map)))
