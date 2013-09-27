@@ -1,6 +1,7 @@
-(ns uk-food-hygiene.handler  
-  (:require [compojure.core :refer [defroutes]]            
+(ns uk-food-hygiene.handler
+  (:require [compojure.core :refer [defroutes]]
             [uk-food-hygiene.routes.home :refer [home-routes]]
+            [uk-food-hygiene.routes.api  :refer [api-routes]]
             [noir.util.middleware :as middleware]
             [compojure.route :as route]
             [taoensso.timbre :as timbre]
@@ -23,11 +24,11 @@
      :async? false ; should be always false for rotor
      :max-message-per-msecs nil
      :fn rotor/append})
-  
+
   (timbre/set-config!
     [:shared-appender-config :rotor]
     {:path "uk_food_hygiene.log" :max-size (* 512 1024) :backlog 10})
-  
+
   (timbre/info "uk-food-hygiene started successfully"))
 
 (defn destroy
@@ -38,7 +39,7 @@
 
 (def app (middleware/app-handler
            ;;add your application routes here
-           [home-routes app-routes]
+           [home-routes api-routes app-routes]
            ;;add custom middleware here
            :middleware []
            ;;add access rules here
