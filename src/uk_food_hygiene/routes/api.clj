@@ -23,4 +23,12 @@
   (GET ["/local-authorities/:id/establishments" :id #"[0-9]+"] [id]
     (json (db/find-establishment {:local_authority_id (Integer. id)})))
 
+  ; Establishments
+  (GET ["/establishments/:fhrs_id" :fhrs_id #"[0-9]+"] [fhrs_id]
+    (json (first (db/find-establishment {:fhrs_id fhrs_id}))))
+
+  (GET ["/establishments/:fhrs_id/rating" :fhrs_id #"[0-9]+"] [fhrs_id]
+    (let [establishment (first (db/find-establishment {:fhrs_id fhrs_id}))
+          rating        (db/get-rating (:rating_id establishment))]
+      (json rating)))
   )
