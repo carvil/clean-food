@@ -92,14 +92,31 @@
       [k (if (and (= k :location) (not-nil? v)) (function v) v)])))
 
 (defn find-establishment-geojson
-  [where-map]
-  (select :establishments
-    (fields :id :fhrs_id :name :address_line_1 :address_line_2 :address_line_3
-            :postcode :scheme_type :rating_id :business_type_id
-            :local_authority_id :created_at [(as-geojson :location) :location])
-    (where where-map)))
+  "Given a map of where clauses, a limit value and an offset value, it
+  returns the establishment records where the location is converted to
+  geojson."
+  ([where-map l o]
+    (select :establishments
+      (fields :id :fhrs_id :name :address_line_1 :address_line_2 :address_line_3
+              :postcode :scheme_type :rating_id :business_type_id
+              :local_authority_id :created_at [(as-geojson :location) :location])
+      (where where-map)
+      (limit l)
+      (offset o)
+      (order :created_at)))
+  ([where-map]
+    (select :establishments
+      (fields :id :fhrs_id :name :address_line_1 :address_line_2 :address_line_3
+              :postcode :scheme_type :rating_id :business_type_id
+              :local_authority_id :created_at [(as-geojson :location) :location])
+      (where where-map))))
 
 (defn find-establishment
-  [where-map]
-  (map #(location-to-map %1 clojure.data.json/read-str)
+  "Finds all establishments that match a map of where conditions; if a limit
+  and offset are given, then it will paginate the results."
+  ([where-map]
+    (map #(location-to-map %1 clojure.data.json/read-str)
        (find-establishment-geojson where-map)))
+  ([where-map l o]
+    (map #(location-to-map %1 clojure.data.json/read-str)
+       (find-establishment-geojson where-map l o))))
