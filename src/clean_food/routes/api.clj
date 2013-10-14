@@ -1,6 +1,8 @@
 (ns clean-food.routes.api
-  (:use compojure.core)
-  (:use noir.response)
+  (:use compojure.core
+        noir.response
+        ring.middleware.basic-authentication
+        [environ.core :refer [env]])
   (:require [clean-food.util :as util]
             [clean-food.models.db :as db]))
 
@@ -10,7 +12,11 @@
   [element]
   (or (nil? element) (empty? element)))
 
-(defroutes api-routes
+(defn authenticated? [name pass]
+  (and (= name (env :auth-user "clean-food"))
+       (= pass (env :auth-pass ""))))
+
+(defroutes api-routes*
            ;
   ; Business Types
   (GET "/business-types" []
@@ -44,3 +50,7 @@
     (let [establishment (first (db/find-establishment {:fhrs_id fhrs_id}))
           rating        (db/get-rating (:rating_id establishment))]
       (json rating))))
+
+(def api-routes
+  (-> #'api-routes*
+    (wrap-basic-authentication authenticated?)))
