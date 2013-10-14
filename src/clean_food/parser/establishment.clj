@@ -1,6 +1,6 @@
-(ns uk-food-hygiene.parser.establishment
-  (use [uk-food-hygiene.parser.utils :as utils]
-       [uk-food-hygiene.models.db    :as db]
+(ns clean-food.parser.establishment
+  (use [clean-food.parser.utils :as utils]
+       [clean-food.models.db    :as db]
        [clj-time.format              :as cljtime]
        [clj-time.coerce              :only [to-sql-date]]))
 

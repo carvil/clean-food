@@ -1,4 +1,4 @@
-# uk-food-hygiene
+# clean-food
 
 Show the food hygiene ratings attributed to all London restaurants, by borough.
 
@@ -17,13 +17,13 @@ You will need:
 
 With `postgresql` running, create the database:
 
-    $ createdb uk_food_hygiene
+    $ createdb clean_food
 
 Note that you might have to enable the `postgis` extension. If that's the case,
 login to postgres as a superuser and create the extension:
 
-    $ psql -U <SUPERUSER> -h localhost -d uk_food_hygiene
-    uk_food_hygiene=> CREATE EXTENSION postgis;
+    $ psql -U <SUPERUSER> -h localhost -d clean_food
+    clean_food => CREATE EXTENSION postgis;
     CREATE EXTENSION
 
 And run the database migrations:

@@ -1,5 +1,5 @@
-(ns uk-food-hygiene.parser.core
-  (use [uk-food-hygiene.parser.establishment :as establishment])
+(ns clean-food.parser.core
+  (use [clean-food.parser.establishment :as establishment])
   (:gen-class))
 
 (defn -main

@@ -1,4 +1,4 @@
-(ns uk-food-hygiene.models.db
+(ns clean-food.models.db
   (:use korma.core
         [clojure.data.json :only (read-str)]
         [korma.db :only (defdb)]
@@ -6,7 +6,7 @@
 
 (def db-spec {
   :subprotocol (env :pg-subprotocol "postgresql")
-  :subname     (env :pg-subname     "//localhost/uk_food_hygiene")
+  :subname     (env :pg-subname     "//localhost/clean_food")
   :user        (env :pg-user        "admin")
   :password    (env :pg-password    "")})
 

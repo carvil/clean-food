@@ -1,5 +1,5 @@
-(ns uk-food-hygiene.repl
-  (:use uk-food-hygiene.handler
+(ns clean-food.repl
+  (:use clean-food.handler
         ring.server.standalone
         [ring.middleware file-info file]))
 

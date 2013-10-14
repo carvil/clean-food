@@ -2,7 +2,7 @@
   (:use [korma.db]
         [korma.core])
   (:require [clojure.java.jdbc :as sql]
-            [uk-food-hygiene.models.db :as db]))
+            [clean-food.models.db :as db]))
 
 (defn up
   "Migrates the database up to version 20130818181033."

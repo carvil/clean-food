@@ -1,9 +1,9 @@
 (ns config.migrate-config
   (:use [korma.db]
         [korma.core])
-  (:require [uk-food-hygiene.models.db :as uk-food-hygiene]))
+  (:require [clean-food.models.db :as clean-food]))
 
-(defdb db uk-food-hygiene/db-spec)
+(defdb db clean-food/db-spec)
 
 (defn- maybe-create-schema-table
   "Creates the schema table if it doesn't already exist."
@@ -34,7 +34,7 @@
   (:use [korma.db]
         [korma.core])\n
   (:require [clojure.java.jdbc :as sql]
-            [uk-food-hygiene.models.db :as db])"
+            [clean-food.models.db :as db])"
    :namespace-prefix "migrations"
    :init maybe-create-schema-table
    :current-version current-db-version

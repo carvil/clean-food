@@ -1,8 +1,8 @@
-(ns uk-food-hygiene.routes.api
+(ns clean-food.routes.api
   (:use compojure.core)
   (:use noir.response)
-  (:require [uk-food-hygiene.util :as util]
-            [uk-food-hygiene.models.db :as db]))
+  (:require [clean-food.util :as util]
+            [clean-food.models.db :as db]))
 
 (def defaults {:offset 0 :limit 20})
 

@@ -1,7 +1,7 @@
-(ns uk-food-hygiene.handler
+(ns clean-food.handler
   (:require [compojure.core :refer [defroutes]]
-            [uk-food-hygiene.routes.home :refer [home-routes]]
-            [uk-food-hygiene.routes.api  :refer [api-routes]]
+            [clean-food.routes.home :refer [home-routes]]
+            [clean-food.routes.api  :refer [api-routes]]
             [noir.util.middleware :as middleware]
             [compojure.route :as route]
             [taoensso.timbre :as timbre]
@@ -27,15 +27,15 @@
 
   (timbre/set-config!
     [:shared-appender-config :rotor]
-    {:path "uk_food_hygiene.log" :max-size (* 512 1024) :backlog 10})
+    {:path "clean_food.log" :max-size (* 512 1024) :backlog 10})
 
-  (timbre/info "uk-food-hygiene started successfully"))
+  (timbre/info "clean-food started successfully"))
 
 (defn destroy
   "destroy will be called when your application
    shuts down, put any clean up code here"
   []
-  (timbre/info "uk-food-hygiene is shutting down..."))
+  (timbre/info "clean-food is shutting down..."))
 
 (def app (middleware/app-handler
            ;;add your application routes here

@@ -1,7 +1,7 @@
-(ns uk-food-hygiene.routes.home
+(ns clean-food.routes.home
   (:use compojure.core)
-  (:require [uk-food-hygiene.views.layout :as layout]
-            [uk-food-hygiene.util :as util]))
+  (:require [clean-food.views.layout :as layout]
+            [clean-food.util :as util]))
 
 (defn home-page []
   (layout/render

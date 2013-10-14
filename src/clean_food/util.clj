@@ -1,4 +1,4 @@
-(ns uk-food-hygiene.util
+(ns clean-food.util
   (:require [noir.io :as io]
             [markdown.core :as md]))
 

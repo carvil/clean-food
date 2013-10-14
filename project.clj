@@ -1,4 +1,4 @@
-(defproject uk-food-hygiene "0.1.0-SNAPSHOT"
+(defproject clean-food "0.1.0-SNAPSHOT"
 
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [lib-noir "0.6.8"]
@@ -19,9 +19,9 @@
                                               com.sun.jmx/jmxri]]]
 
   :ring {
-    :handler uk-food-hygiene.handler/war-handler,
-    :init uk-food-hygiene.handler/init,
-    :destroy uk-food-hygiene.handler/destroy
+    :handler clean-food.handler/war-handler,
+    :init clean-food.handler/init,
+    :destroy clean-food.handler/destroy
   }
 
   :profiles {
@@ -36,7 +36,7 @@
   }
 
   :url "http://example.com/FIXME"
-  :description "Visualisation of the UK food hygiene statistics according to
+  :description "Visualisation of London's food hygiene statistics according to
     the open data provided by data.gov.uk"
 
   :plugins [[lein-ring "0.8.6"]
@@ -44,6 +44,6 @@
             [lein-environ "0.4.0"]]
 
   ; Entry point for the parser
-  :main uk-food-hygiene.parser.core
+  :main clean-food.parser.core
 
   :min-lein-version "2.0.0")

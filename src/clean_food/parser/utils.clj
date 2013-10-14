@@ -1,4 +1,4 @@
-(ns uk-food-hygiene.parser.utils
+(ns clean-food.parser.utils
   (use [clojure.xml :only (parse)]))
 
 (defn parse-stream
