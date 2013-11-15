@@ -2,7 +2,8 @@
   (:use korma.core
         [clojure.data.json :only (read-str)]
         [korma.db :only (defdb)]
-        [environ.core :refer [env]]))
+        [environ.core :refer [env]]
+        [clean-food.util :as util]))
 
 (def db-spec {
   :subprotocol (env :pg-subprotocol "postgresql")
@@ -19,20 +20,6 @@
 (def establishment-keys   [:fhrs_id :name :address_line_1 :address_line_2
                            :address_line_3 :postcode :scheme_type])
 
-; HELPERS
-
-(defn to-point
-  "Converts a lat/lng pair into a SQL Geometry point"
-  [lat lng]
-  (if (and (nil? lat) (nil? lng))
-    nil
-    (korma.sql.engine/sql-func
-    "ST_GeomFromText" (str "POINT(" lat " " lng ")") (int 4326))))
-
-(defn as-geojson [pg-geom]
-  (korma.sql.engine/sql-func "ST_AsGeoJSON" pg-geom))
-
-(def not-nil? (complement nil?))
 
 ; CREATE
 
@@ -89,7 +76,7 @@
   [establishment function]
   (into {}
     (for [[k v] establishment]
-      [k (if (and (= k :location) (not-nil? v)) (function v) v)])))
+      [k (if (and (= k :location) (util/not-nil? v)) (function v) v)])))
 
 (defn find-establishment-geojson
   "Given a map of where clauses, a limit value and an offset value, it
@@ -99,7 +86,7 @@
     (select :establishments
       (fields :id :fhrs_id :name :address_line_1 :address_line_2 :address_line_3
               :postcode :scheme_type :rating_id :business_type_id
-              :local_authority_id :created_at [(as-geojson :location) :location])
+              :local_authority_id :created_at [(util/as-geojson :location) :location])
       (where where-map)
       (limit l)
       (offset o)
@@ -108,7 +95,7 @@
     (select :establishments
       (fields :id :fhrs_id :name :address_line_1 :address_line_2 :address_line_3
               :postcode :scheme_type :rating_id :business_type_id
-              :local_authority_id :created_at [(as-geojson :location) :location])
+              :local_authority_id :created_at [(util/as-geojson :location) :location])
       (where where-map))))
 
 (defn find-establishment

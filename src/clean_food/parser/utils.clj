@@ -1,5 +1,6 @@
 (ns clean-food.parser.utils
-  (use [clojure.xml :only (parse)]))
+  (use korma.core
+       [clojure.xml :only (parse)]))
 
 (defn parse-stream
   "Parse an XML input stream"
@@ -25,3 +26,11 @@
   "Gets the content of a given tag, if it exists"
   [lst tag]
   (first (find-all-by-tag lst tag)))
+
+(defn to-point
+  "Converts a lat/lng pair into a SQL Geometry point"
+  [lat lng]
+  (if (and (nil? lat) (nil? lng))
+    nil
+    (korma.sql.engine/sql-func
+    "ST_GeomFromText" (str "POINT(" lat " " lng ")") (int 4326))))

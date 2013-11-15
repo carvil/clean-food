@@ -17,7 +17,6 @@
        (= pass (env :auth-pass ""))))
 
 (defroutes api-routes*
-           ;
   ; Business Types
   (GET "/business-types" []
     (json (db/find-business-type {})))

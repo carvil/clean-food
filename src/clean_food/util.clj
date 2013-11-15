@@ -1,4 +1,5 @@
 (ns clean-food.util
+  (use korma.core)
   (:require [noir.io :as io]
             [markdown.core :as md]))
 
@@ -15,3 +16,8 @@
   (->>
     (io/slurp-resource filename)
     (md/md-to-html-string)))
+
+(defn as-geojson [pg-geom]
+  (korma.sql.engine/sql-func "ST_AsGeoJSON" pg-geom))
+
+(def not-nil? (complement nil?))

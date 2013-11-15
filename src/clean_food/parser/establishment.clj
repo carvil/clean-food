@@ -107,7 +107,7 @@
   (let [location (utils/find-all-by-tag establishment-data :Geocode)
         lat      (utils/find-tag-content location :Latitude)
         lng      (utils/find-tag-content location :Longitude)]
-    { :location (db/to-point lat lng) }))
+    { :location (utils/to-point lat lng) }))
 
 (defn create-establishment-record
   "Creates an establishment with the relations"
