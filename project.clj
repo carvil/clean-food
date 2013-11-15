@@ -42,7 +42,8 @@
 
   :plugins [[lein-ring "0.8.6"]
             [drift "1.5.2"]
-            [lein-environ "0.4.0"]]
+            [lein-environ "0.4.0"]
+            [lein-cucumber "1.0.2"]]
 
   ; Entry point for the parser
   :main clean-food.parser.core
